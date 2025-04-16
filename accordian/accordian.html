@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .accordion {
+      background-color: #eee;
+      color: #444;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      
+    
+      text-align: left;
+      outline: none;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .active, .accordion:hover {
+      background-color: #ccc;
+    }
+
+    .panel {
+      background-color: rgb(128, 124, 124);
+      overflow: hidden;
+      border-radius:10px;
+      
+      max-height: 0;
+      color:white;
+      transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+      padding: 0 18px;
+    }
+
+    .panel.open {
+      padding: 15px 18px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Smooth Accordion</h2>
+
+<button class="accordion">Section 1</button>
+<div class="panel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+</div>
+
+<button class="accordion">Section 2</button>
+<div class="panel">
+  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="accordion">Section 3</button>
+<div class="panel">
+  <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+</div>
+
+<script>
+  const accordions = document.querySelectorAll('.accordion');
+
+  accordions.forEach(acc => {
+    acc.addEventListener('click', function () {
+      this.classList.toggle('active');
+
+      const panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+        panel.classList.remove('open');
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        panel.classList.add('open');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
