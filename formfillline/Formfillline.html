@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Modal Example</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 30px;
+    }
+
+    .form-container {
+        border-top: 3px solid #3023e4;
+      background: white;
+      padding: 20px;
+      width: 900px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input, select {
+      display: block;
+      width: 90%;
+      padding: 10px;
+      margin-top: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .progress-bar {
+      height: 8px;
+      width: 100%;
+      background: #ddd;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #4f15d8;
+      transition: width 0.3s ease;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content:end;
+    
+   ;
+      margin-top: 20px;
+    }
+
+    .button-container button {
+      padding: 10px 20px;
+     margin: 12px;
+      width: 150px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .button-container .submit-btn {
+      background: #3023e4;
+      color: white;
+    }
+
+    .button-container .cancel-btn {
+      background: #ce1b0e;
+      color: white;
+      
+      
+      
+    }
+
+    .formgrid{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 10px;
+    }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+            .formgrid {
+                grid-template-columns: 1fr; /* Stack the form fields on smaller screens */
+            }
+
+            .form-container {
+                width: 95%; /* Make the form container more narrow on small screens */
+            }
+
+            .button-container {
+                flex-direction: column; /* Stack buttons vertically */
+                align-items: center;
+            }
+
+            .button-container button {
+                width: 100%; /* Make buttons take up full width */
+                margin: 5px 0;
+            }
+
+            .progress-bar {
+                height: 6px; /* Make the progress bar smaller on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .progress-bar {
+                height: 4px; /* Further reduce the progress bar height on very small screens */
+            }
+
+            .button-container {
+                margin-top: 10px;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Fill the Form</h2>
+    
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <form  id="user-form">
+     <div class="formgrid">
+        <input type="text" id="name" placeholder="Name">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <input type="text" id="address" placeholder="Address">
+          <input type="text" id="phone" placeholder="Phone Number">
+          <input type="text" id="city" placeholder="City">
+          <input type="text" id="state" placeholder="State">
+          <input type="text" id="country" placeholder="Country">
+          <input type="text" id="zip" placeholder="Zip Code">
+          <input type="text" id="dob" placeholder="Date of Birth">
+     </div>
+
+   
+     
+      <div class="button-container">
+       <button type="button" class="cancel-btn" onclick="resetForm()">Cancel</button>
+        <button type="submit" class="submit-btn">Submit</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    const formFields = ['name', 'email', 'password', 'address', 'phone', 'city', 'state', 'country', 'zip', 'dob'];
+    const progressFill = document.getElementById('progress-fill');
+
+    formFields.forEach(id => {
+      document.getElementById(id).addEventListener('input', updateProgress);
+    });
+
+    function updateProgress() {
+      let filled = 0;
+
+      formFields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field.value.trim() !== '')
+        {
+          filled++;
+        }
+      });
+
+      const percentage = (filled / formFields.length) * 100;
+      progressFill.style.width = percentage + '%';
+    }
+
+    // Reset form on cancel
+    function resetForm() {
+      document.getElementById('user-form').reset();
+      progressFill.style.width = '0%'; // Reset the progress bar
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Grid Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: roboto;
+        }
+
+        body {
+            display: grid;
+          grid-template-columns: auto;
+            min-height: 100%;
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            
+            border-radius:2px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 100%;
+          
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns:auto auto auto auto;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 1px;
+            font-size: 16px;
+           
+            box-shadow: 1px ;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0fe621;
+        }
+
+        .button-group {
+    display: grid
+;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    margin-top: 43px;
+    margin-left: 674px;
+    justify-content: end;
+}
+
+
+
+        .btn {
+            width: 142px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit {
+            background-color:rgb(20, 228, 83);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background-color: #49fd02;
+        }
+
+        .btn-cancel {
+            background-color: #e44c5b;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background-color: #c51224;
+        }
+
+        /* Responsive Design using Grid */
+        @media (max-width: 900px) {
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .button-group {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .button-group {
+                grid-column: 1 / -1;
+                grid-template-columns: 1fr;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div>
+        <form class="form-grid">
+            <!-- Row 1 -->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="rollno">Roll Number</label>
+                <input type="text" id="rollno" name="rollno" required>
+            </div>
+            <div class="form-group">
+                <label for="createpassword">Create Password</label>
+                <input type="password" id="createpassword" name="createpassword" required>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="form-group">
+                <label for="confirmpassword">Confirm Password</label>
+                <input type="password" id="confirmpassword" name="confirmpassword" required>
+            </div>
+            <div class="form-group">
+                <label for="place">Place</label>
+                <input type="text" id="place" name="place" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="option">Option</label>
+                <select id="option" name="option" required>
+                    <option value="">Select</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                </select>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="form-group">
+                <label for="timezone">Timezone</label>
+                <select id="timezone" name="timezone" required>
+                    <option value="">Select</option>
+                    <option value="utc">UTC</option>
+                    <option value="est">EST</option>
+                    <option value="pst">PST</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pincode">Pincode</label>
+                <input type="text" id="pincode" name="pincode" required>
+            </div>
+            <div class="form-group">
+                <label for="timing">Timing</label>
+                <input type="time" id="timing" name="timing" required>
+            </div>
+            <div class="form-group">
+                <label for="timing">Timing</label>
+                <input type="time" id="timing" name="timing" required>
+            </div>
+           
+
+            <!-- Buttons -->
+          
+        </div>
+        <div class="button-group">
+            <button type="button" class="btn btn-cancel">Cancel</button>
+            <button type="submit" class="btn btn-submit">Submit</button>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
